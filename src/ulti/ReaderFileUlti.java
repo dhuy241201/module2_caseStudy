@@ -58,7 +58,7 @@ public class ReaderFileUlti {
         final int FANTASY_INDEX = 2;
         final int AUTHOR_INDEX = 3;
         final int DATE_CREATED_INDEX = 4;
-        for (String propertiesOfWorld: worldPropertiesList){
+        for (String propertiesOfWorld : worldPropertiesList){
             if (propertiesOfWorld.equals(worldPropertiesList.get(0))){
                 continue;
             }
@@ -83,7 +83,7 @@ public class ReaderFileUlti {
         final int ABILITY_INDEX = 5;
         final int WORLD_ID_INDEX = 6;
         final int STORY_INDEX = 7;
-        for (String propertiesOfCharacter: characterPropertiesList){
+        for (String propertiesOfCharacter : characterPropertiesList){
             if (propertiesOfCharacter.equals(characterPropertiesList.get(0))){
                 continue;
             }

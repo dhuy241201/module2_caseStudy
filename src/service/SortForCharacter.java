@@ -1,6 +1,7 @@
 package service;
 
 import CRUD.CRUD_Character;
+import design.DesignText;
 import entity.MultiWorld.Character;
 import entity.MultiWorld.World;
 import sort.sortCharacter.SortByAge;
@@ -45,16 +46,17 @@ public class SortForCharacter {
     }
 
     public static void showAllCharacterAfterSort(List<Character> characterList, World currentWorld){
-        System.out.println("ALL CHARACTER OF WORLD " + currentWorld.getName().toUpperCase());
+        System.out.println(DesignText.TEXT_YELLOW + "                     ALL CHARACTER OF WORLD " + currentWorld.getName().toUpperCase()+"                       "+ DesignText.TEXT_RESET);
         System.out.println();
-        System.out.printf("Name\t\t\t\t" + "\t\t" + "Age" + "\t\t" + "Gender" + "\t\t" + "Role" + "\t\t" + "Ability");
+        System.out.printf(DesignText.TEXT_GREEN+"%-15s\t\t%-10s\t\t%-10s\t\t%-15s\t\t%-20s\t\t%s\n","NAME","AGE","GENDER","ROLE","ABILITY","STORY"+DesignText.TEXT_RESET);
+        System.out.printf("\n⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻\n\n");
         for (Character character : characterList){
             CRUD_Character.showCharacterInfomationForAll(character);
         }
     }
     public static void choiceSortForCharacter(World currentWorld){
         System.out.printf("\n\n");
-        System.out.printf("SORT LIST CHARACTER\n\n");
+        System.out.printf(DesignText.TEXT_CYAN + "SORT LIST CHARACTER\n\n" + DesignText.TEXT_RESET);
         System.out.println("  (1) Sort by name");
         System.out.println("  (2) Sort by age");
         System.out.println("  (3) Sort by gender");
@@ -84,7 +86,7 @@ public class SortForCharacter {
                     MenuService.menuCRUD_ChacracterForWibu(currentWorld);
                     break;
                 default:
-                    System.out.println("Choice is not valid. Try again!!!");
+                    System.out.println(DesignText.TEXT_RED + "Choice is not valid. Try again!!!" + DesignText.TEXT_RESET);
             }
             System.out.println();
         }while (!isChoiceValid);

@@ -6,6 +6,7 @@ import entity.MultiWorld.World;
 import entity.Users.User;
 import entity.Users.Wibu;
 import ulti.Input;
+import design.DesignText;
 
 import static ulti.Choice.*;
 
@@ -14,39 +15,43 @@ public class MenuService {
         User currentUser;
         boolean isChoiceValid = false;
         do {
-            System.out.println("🌟WELCOME TO MULTIFANTASYWORLD🌟");
-            System.out.println();
-            System.out.println("Choose one feature to begin");
-            System.out.println(" (1) Register");
-            System.out.println(" (2) Login");
-            System.out.println(" (3) Logout");
-            System.out.println(" (4) Exit");
-            int choice = Integer.parseInt(Input.prompt("Enter your choice: "));
-            System.out.println();
-            switch (choice) {
-                case CHOICE_1:
-                    UserService.register();
-                    isChoiceValid = true;
-                    MenuService.menuForStart();
-                    break;
-                case CHOICE_2:
-                    currentUser = UserService.login();
-                    isChoiceValid = true;
-                    menuAfterLogin((Wibu) currentUser);
-                    break;
-                case CHOICE_3:
-                    currentUser = null;
-                    isChoiceValid = true;
-                    System.out.println("Logout successful");
-                    System.out.println();
-                    MenuService.menuForStart();
-                    break;
-                case CHOICE_4:
-                    System.out.println("See you soon!!!");
-                    System.exit(0);
-                default:
-                    System.out.print("Your chocie is not valid");
-                    System.out.println();
+            try {
+                System.out.println(DesignText.TEXT_YELLOW + "🌟WELCOME TO MULTIFANTASYWORLD🌟" + DesignText.TEXT_RESET);
+                System.out.println();
+                System.out.println(DesignText.TEXT_BLUE + "Choose one feature to begin");
+                System.out.println(" (1) Register");
+                System.out.println(" (2) Login");
+                System.out.println(" (3) Logout");
+                System.out.println(" (4) Exit" + DesignText.TEXT_RESET);
+                int choice = Integer.parseInt(Input.prompt("Enter your choice: "));
+                switch (choice) {
+                    case CHOICE_1:
+                        UserService.register();
+                        isChoiceValid = true;
+                        MenuService.menuForStart();
+                        break;
+                    case CHOICE_2:
+                        currentUser = UserService.login();
+                        isChoiceValid = true;
+                        menuAfterLogin((Wibu) currentUser);
+                        break;
+                    case CHOICE_3:
+                        currentUser = null;
+                        isChoiceValid = true;
+                        System.out.printf(DesignText.TEXT_CYAN + "\nLogout successful\n\n" + DesignText.TEXT_RESET);
+                        MenuService.menuForStart();
+                        break;
+                    case CHOICE_4:
+                        System.out.println("See you soon!!!");
+                        System.exit(0);
+                    default:
+                        System.out.println();
+                        System.out.println(DesignText.TEXT_RED + "Your choice is not valid" + DesignText.TEXT_RESET);
+                        System.out.println();
+                }
+            }catch (Exception exception){
+                System.out.printf(DesignText.TEXT_RED + "\nYour choice is not valid\n" + DesignText.TEXT_RESET);
+                System.out.println();
             }
         } while (!isChoiceValid);
     }
@@ -58,7 +63,7 @@ public class MenuService {
             System.out.println();
             System.out.println("  (1) Open menu for world");
             System.out.println("  (2) Open menu for chacracter");
-            System.out.println("  (3) Back to main menu");
+            System.out.println("  (3) Logout");
             int newChoice = Integer.parseInt(Input.prompt("Enter your choice: "));
             System.out.println();
             switch (newChoice) {
@@ -72,17 +77,18 @@ public class MenuService {
                         isNewChoiceValid = true;
                         break;
                     } else {
-                        System.out.println("You haven't create a world. Let's create wonderful one right now!!!");
+                        System.out.println(DesignText.TEXT_RED + "You haven't create a world. Let's create wonderful one right now!!!" + DesignText.TEXT_RESET);
                         System.out.println();
                         menuCRUD_WorldForWibu((Wibu) currentUser);
                         isNewChoiceValid = true;
                         break;
                     }
                 case CHOICE_3:
+                    System.out.printf(DesignText.TEXT_CYAN + "Log out successful!!!\n\n" + DesignText.TEXT_RESET);
                     menuForStart();
                     break;
                 default:
-                    System.out.println("Your choice is not valid. Try again!!!");
+                    System.out.println(DesignText.TEXT_RED + "Your choice is not valid. Try again!!!" + DesignText.TEXT_RESET);
             }
         } while (!isNewChoiceValid);
     }
@@ -91,7 +97,7 @@ public class MenuService {
     public static void menuCRUD_WorldForWibu(Wibu currentWibu) {
         boolean isChoiceValid = false;
         do {
-            System.out.println("🌟BEING A WIBU IS WONDERFUL🌟");
+            System.out.println(DesignText.TEXT_YELLOW + "🌟BEING A WIBU IS WONDERFUL🌟" + DesignText.TEXT_RESET);
             System.out.print("\nChoose one feature\n");
             System.out.println("  (1) Create new wonderful world");
             System.out.println("  (2) Show current world");
@@ -109,7 +115,6 @@ public class MenuService {
                     break;
                 case CHOICE_2:
                     CRUD_World.showWorld(currentWibu);
-                    menuCRUD_WorldForWibu(currentWibu);
                     isChoiceValid = true;
                     break;
                 case CHOICE_3:
@@ -124,19 +129,21 @@ public class MenuService {
                     break;
                 case CHOICE_5:
                     CRUD_World.showAllWorld();
+                    System.out.println();
+                    menuCRUD_WorldForWibu(currentWibu);
                     isChoiceValid = true;
                     break;
                 case CHOICE_6:
                     try {
                         menuAfterLogin(CRUD_Character.getCurrentWibuForWorld(CRUD_World.getcurrentWorldForWibu(currentWibu)));
                     }catch (Exception e){
-                        System.out.printf("You must create world to use this figure\n\n");
+                        System.out.printf(DesignText.TEXT_RED + "You must create world to use this figure\n\n");
                         menuCRUD_WorldForWibu(currentWibu);
                     }
                     isChoiceValid = true;
                     break;
                 default:
-                    System.out.println("Your choice is not valid");
+                    System.out.println(DesignText.TEXT_RED + "Your choice is not valid" + DesignText.TEXT_RESET);
                     System.out.println();
             }
         } while (!isChoiceValid);
@@ -145,7 +152,7 @@ public class MenuService {
     public static void menuCRUD_ChacracterForWibu(World currentWorld) {
         boolean isChoiceValid = false;
         do {
-            System.out.println("CHARACTER IS THE MOST IMPORTANT IN A WONDERFUL WORLD");
+            System.out.println(DesignText.TEXT_YELLOW + "✨CHARACTER IS THE MOST IMPORTANT IN A WONDERFUL WORLD✨" + DesignText.TEXT_RESET);
             System.out.print("\nChoose one feature\n");
             System.out.println("  (1) Create new character");
             System.out.println("  (2) Show a chacracter");
@@ -183,8 +190,8 @@ public class MenuService {
                     break;
                 case CHOICE_6:
                     CRUD_Character.exterminateAllCharacter(currentWorld);
-                    System.out.printf("      All character has been exterminated      \n" +
-                                      "The world has returned to its original beauty\n\n");
+                    System.out.printf(DesignText.TEXT_BLUE + "      All character has been exterminated      \n" +
+                                      "The world has returned to its original beauty\n\n" + DesignText.TEXT_RESET);
                     menuCRUD_ChacracterForWibu(currentWorld);
                     isChoiceValid = true;
                     break;
@@ -193,7 +200,7 @@ public class MenuService {
                     isChoiceValid = true;
                     break;
                 default:
-                    System.out.println("Your choice is not valid");
+                    System.out.println(DesignText.TEXT_RED + "Your choice is not valid" + DesignText.TEXT_RESET);
                     System.out.println();
             }
         } while (!isChoiceValid);

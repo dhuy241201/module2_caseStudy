@@ -50,7 +50,7 @@ public class WriteFileUlti {
         try {
             FileWriter fileWriter = new FileWriter("src\\file\\characters.csv",true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(character.getCharacterID() + ";" + character.getName() + ";" + character.getAge() + ";" + character.getGender() + ";" + character.getRole() + ";" + character.getAbility() + ";" + character.getWorldID() + character.getStory() + "\n");
+            bufferedWriter.write(character.getCharacterID() + ";" + character.getName() + ";" + character.getAge() + ";" + character.getGender() + ";" + character.getRole() + ";" + character.getAbility() + ";" + character.getWorldID() + ";" + character.getStory() + "\n");
             bufferedWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,11 +59,11 @@ public class WriteFileUlti {
 
     public static void writeNewFileCharacter() {
         try {
-            FileWriter fileWriter = new FileWriter("src\\file\\character.csv");
+            FileWriter fileWriter = new FileWriter("src\\file\\characters.csv");
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write("CHARACTER_ID;NAME;AGE;GENDER;ROLE;ABILITY;WORLD_ID;STORY\n");
             for (Character character : CHARACTER_LIST) {
-                bufferedWriter.write(character.getCharacterID() + ";" + character.getName() + ";" + character.getAge() + ";" + character.getGender() + ";" + character.getRole() + ";" + character.getAbility() + ";" + character.getWorldID() + character.getStory() + "\n");
+                bufferedWriter.write(character.getCharacterID() + ";" + character.getName() + ";" + character.getAge() + ";" + character.getGender() + ";" + character.getRole() + ";" + character.getAbility() + ";" + character.getWorldID() + ";" + character.getStory() + "\n");
             }
             bufferedWriter.close();
         } catch (Exception e) {

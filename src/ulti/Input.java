@@ -1,5 +1,6 @@
 package ulti;
 
+import design.DesignText;
 import entity.Users.Wibu;
 
 import java.util.Scanner;
@@ -19,7 +20,7 @@ public class Input {
         do {
             text = prompt(message);
             if (ValidateForUser.validate(text, regexPattern)) {
-                System.out.println("Invalid input!!! Try again");
+                System.out.println(DesignText.TEXT_RED + "Invalid input!!! Try again" + DesignText.TEXT_RESET);
             }
         } while (ValidateForUser.validate(text, regexPattern));
         return text;
@@ -38,7 +39,7 @@ public class Input {
             for (Wibu wibu : WIBU_LIST) {
                 if (user.equals(wibu.getUser())) {
                     isUserExisted = true;
-                    System.out.printf("\n\uD83D\uDCA5THIS USER HAS BEEN EXISTED\uD83D\uDCA5\n");
+                    System.out.printf(DesignText.TEXT_RED + "\n\uD83D\uDCA5THIS USER HAS BEEN EXISTED\uD83D\uDCA5\n" + DesignText.TEXT_RESET);
                 }
             }
         } while (isUserExisted);
@@ -66,7 +67,7 @@ public class Input {
             for (Wibu wibu : WIBU_LIST) {
                 if (name.equals(wibu.getName())) {
                     isNameExisted = true;
-                    System.out.printf("\n\uD83D\uDCA5THIS NAME HAS BEEN EXISTED\uD83D\uDCA5\n");
+                    System.out.printf(DesignText.TEXT_RED + "\n\uD83D\uDCA5THIS NAME HAS BEEN EXISTED\uD83D\uDCA5\n" + DesignText.TEXT_RESET);
                 }
             }
         }while (isNameExisted);
@@ -79,13 +80,10 @@ public class Input {
     public static String inputCharacterName(){
         String name;
         do {
-            name = Input.prompt("NAME\n" +
-                    "* Valid name:\n" +
-                    "   - Only contains letters\n" +
-                    "   - Capitalize the first letter of each word\n\n" +
-                    "Enter character's name:\n");
+            name = Input.prompt("NAME\n\n" +
+                    "Enter character's name: ");
             if(ValidateForCharacter.validate(name,"NAME")){
-                System.out.println("Character's name is invalid");
+                System.out.printf(DesignText.TEXT_RED + "\nCharacter's name is invalid\n" + DesignText.TEXT_RESET);
             };
         }while (ValidateForCharacter.validate(name,"NAME"));
         return name;
@@ -108,7 +106,8 @@ public class Input {
                 "Enter character's ability: ");
     }
     public static String inputCharacterStory(){
-        return Input.prompt("Enter character's story\n" +
+        return Input.prompt("STORY" +
+                "Enter character's story\n" +
                 "If you haven't figured it out yet. Enter: n\n\n" +
                 "Character's story: ");
     }

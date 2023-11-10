@@ -84,7 +84,7 @@ public class Character {
     }
 
     public String getStory() {
-        if (this.story == "n"){
+        if (this.story.equalsIgnoreCase("n")){
             return "Unknown";
         } else {
             return story;

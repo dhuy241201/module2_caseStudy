@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class ValidateForCharacter {
     private static Pattern pattern;
-    private static final String NAME_REGEX = "^([A-Z][a-z]*(\s))+[A-Z][a-z]*$";
+    private static final String NAME_REGEX = "^[A-Z][a-zA-Z’\\- \\d]+$";
     private static final String AGE_REGEX = "\\d+$";
     public static boolean validate(String input, String regexPattern){
         switch (regexPattern){

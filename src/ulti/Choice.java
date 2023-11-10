@@ -1,5 +1,6 @@
 package ulti;
 
+import design.DesignText;
 import entity.MultiWorld.Character;
 import entity.MultiWorld.World;
 
@@ -18,12 +19,12 @@ public class Choice {
             case Choice.CHOICE_1:
                 String newNameOfWorld = Input.prompt("Enter new world name: ");
                 world.setName(newNameOfWorld);
-                System.out.println("World's name changed");
+                System.out.println(DesignText.TEXT_CYAN + "World's name changed" + DesignText.TEXT_RESET);
                 break;
             case Choice.CHOICE_2:
                 String newfantasyOfWorld = Input.prompt("Write new fantasy of world: ");
                 world.setFantasy(newfantasyOfWorld);
-                System.out.println("History of the world had been rewrited");
+                System.out.println(DesignText.TEXT_CYAN + "History of the world had been rewrited" + DesignText.TEXT_RESET);
                 break;
         }
     }
@@ -65,16 +66,12 @@ public class Choice {
                         isChoiceValid = true;
                         break;
                     default:
-                        System.out.println("You input isn't valid. Try again!!!");
+                        System.out.println(DesignText.TEXT_RED + "Your input isn't valid. Try again!!!" + DesignText.TEXT_RESET);
                 }
             }catch (Exception exception){
-                System.out.println("You input isn't valid. You must input a number!!!");
+                System.out.println(DesignText.TEXT_RED + "You input isn't valid. You must input a number!!!" + DesignText.TEXT_RESET);
             }
         }while (!isChoiceValid);
-        System.out.println("Your character's propertie has been updated");
-    }
-
-    public static void SelectChoiceForMenuCRUD_ChacracterForWibu(World currentWorld){
-
+        System.out.println(DesignText.TEXT_CYAN + "Your character's propertie has been updated" + DesignText.TEXT_RESET);
     }
 }

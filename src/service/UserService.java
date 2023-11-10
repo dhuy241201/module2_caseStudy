@@ -1,5 +1,6 @@
 package service;
 
+import design.DesignText;
 import entity.MultiWorld.World;
 import entity.MultiWorld.Character;
 import entity.UserFactory;
@@ -33,8 +34,8 @@ public class UserService {
         WIBU_LIST.add((Wibu) newUser);
         WriteFileUlti.writeFileWibu((Wibu) newUser);
         System.out.println();
-        System.out.println("Welcome to join MULTIWORLD!!!");
-        System.out.println(" ===Let create your WORLD=== ");
+        System.out.println(DesignText.TEXT_CYAN + "Welcome to join MULTIWORLD!!!");
+        System.out.println(" ===Let create your WORLD=== " + DesignText.TEXT_RESET);
         System.out.println();
         MenuService.menuForStart();
     }
@@ -50,19 +51,20 @@ public class UserService {
                         if (user.equals(wibu.getUser())) {
                             if (password.equals(wibu.getPassword())) {
                                 System.out.println();
-                                System.out.println("Welcome back CREATOR " + wibu.getName());
+                                System.out.println(DesignText.TEXT_CYAN + "Welcome back CREATOR " + wibu.getName() + DesignText.TEXT_RESET);
                                 System.out.println();
                                 return wibu;
                             }
                         }
                     }
-                    throw new RuntimeException("User or Password is incorrect");
+                    throw new RuntimeException(DesignText.TEXT_RED + "User or Password is incorrect" + DesignText.TEXT_RESET);
                 } else {
-                    System.out.printf("\nProgram ended!!!");
-                    return null;
+                    System.out.println();
+                    MenuService.menuForStart();
                 }
             } catch (Exception exception) {
-                System.out.println(exception.getMessage());
+                System.out.println();
+                System.out.println(DesignText.TEXT_RED + exception.getMessage() + DesignText.TEXT_RESET);
             }
         } while (true);
     }
